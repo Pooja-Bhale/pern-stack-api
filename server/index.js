@@ -17,9 +17,9 @@ app.post("/CreateUser", async(req, res) =>{
     try{
         console.log(req.body);
 
-        const {FirstName, LastName} = req.body;
-        const newUser = client.query("insert into Users (FirstName, LastName) VALUES ($1, $2) " , 
-        [ FirstName, LastName]
+        const {FirstName, LastName, Address, OrganizationName, Phone, Email} = req.body;
+        const newUser = client.query("insert into Users (FirstName, LastName, Address, OrganizationName, Phone, Email) VALUES ($1, $2, $3, $4, $5, $6 ) " , 
+        [ FirstName, LastName, Address, OrganizationName, Phone, Email]
         );
 
         res.json(newUser.rows);
@@ -60,10 +60,10 @@ app.get("/User/:id", async (req, res) => {
 app.put("/UpdateUser/:id", async (req, res) => {
     try {
       const { id } = req.params;
-      const { FirstName, LastName } = req.body;
+      const { FirstName, LastName, Address, OrganizationName, Phone, Email } = req.body;
       const updateUser = await client.query(
-        "UPDATE Users SET FirstName = $1, LastName = $2 WHERE UserId = $3",
-        [FirstName, LastName, id]
+        "UPDATE Users SET FirstName = $1, LastName = $2 , Address = $3, OrganizationName = $4, Phone = $5, Email = $6 WHERE UserId = $7",
+        [FirstName, LastName, Address, OrganizationName, Phone, Email, id]
       );
   
       res.json("User updated!");

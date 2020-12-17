@@ -41,28 +41,28 @@ const ListUsers = () => {
     return (
         <Fragment>
             
-              <h4>All Users </h4>
-              <table class="table">
-    <thead>
-      <tr>
-        <th>First Name</th>
-        <th>Last Lame</th>
-        <th>Edit</th>
-        <th>Delete</th>
-      </tr>
-    </thead>
-    <tbody>
-        { allUsers.map(user => (
-        <tr key={user.userid}>
-        <td>{user.firstname}</td>
-        <td>{user.lastname}</td>
-        <td><EditUser user={user}/></td>
-        <td><button className="btn btn-danger" onClick={() => deleteUser(user.userid)}>Delete</button></td>
-      </tr>
+              <h4 Style="margin-left:30px; ">All Users </h4>
+              <table className="table" Style="margin-left:30px; margin-right:30px;">
+                      <thead>
+                          <tr>
+                              <th>First Name</th>
+                              <th>Last Lame</th>
+                              <th>Edit</th>
+                              <th>Delete</th>
+                          </tr>
+                      </thead>
+                  <tbody>
+                      { allUsers.map(user => (
+                    <tr key={user.userid}>
+                        <td>{user.firstname}</td>
+                        <td>{user.lastname}</td>
+                        <td><EditUser user={user}/></td>
+                        <td><button className="btn btn-danger" onClick={() => deleteUser(user.userid)}>Delete</button></td>
+                    </tr>
         ))}
       
-    </tbody>
-  </table>
+                    </tbody>
+              </table>
             </Fragment>
       
     );
