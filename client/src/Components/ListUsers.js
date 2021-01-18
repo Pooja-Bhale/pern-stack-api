@@ -17,7 +17,7 @@ var ListUsers = () => {
     }
   };
 
-  // GEt all Users
+  // Get all Users
   var getUsers = async () => {
     try {
         var response = await fetch("http://localhost:5000/Users");
