@@ -1,10 +1,6 @@
 import React, { Fragment } from "react";
 import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
-
 import "./App.css";
-
-//components
-
 import CreateUser from "./Components/CreateUser";
 import ListUsers from "./Components/ListUsers";
 

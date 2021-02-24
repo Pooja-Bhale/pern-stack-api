@@ -26,7 +26,7 @@ const EditUser = ({ user }) => {
         Email,
       };
       const response = await fetch(
-        `http://localhost:5000/UpdateUser/${user.id}`,
+        `https://uf5dnq4e49.execute-api.ap-south-1.amazonaws.com/dev/UpdateUser/${user.id}`,
         {
           method: "PUT",
           headers: { "Content-Type": "application/json" },

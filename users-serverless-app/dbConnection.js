@@ -38,5 +38,51 @@ const User = sequelize.define("PoojaUser", {
   },
 });
 
+const Songs = sequelize.define("Songs", {
+  SongId: {
+    type: DataTypes.INTEGER,
+    primaryKey: true,
+    autoIncrement: true, // Automatically gets converted to SERIAL for postgres
+  },
+  SongName: {
+    type: DataTypes.STRING,
+  },
+  SongS3Key: {
+    type: DataTypes.STRING,
+  },
+});
+
+const UserMedia = sequelize.define("UserMedia", {
+  MediaId: {
+    type: DataTypes.INTEGER,
+    allowNull: true,
+    primaryKey: true,
+    autoIncrement: true, // Automatically gets converted to SERIAL for postgres
+  },
+  id: {
+    type: DataTypes.INTEGER,
+    allowNull: true,
+    references: {
+      model: "PoojaUsers",
+      key: "id",
+    }, // Automatically gets converted to SERIAL for postgres
+  },
+  SongId: {
+    type: DataTypes.INTEGER,
+    allowNull: true,
+    references: {
+      model: "Songs", // table name
+      key: "SongId", // field name
+    }, // Automatically gets converted to SERIAL for postgres
+  },
+});
+
+UserMedia.belongsTo(User, { foreignKey: "id" });
+
+UserMedia.belongsTo(Songs, { foreignKey: "SongId" });
+
 User.sync();
-module.exports = { User };
+Songs.sync();
+UserMedia.sync();
+
+module.exports = { User, Songs, UserMedia };

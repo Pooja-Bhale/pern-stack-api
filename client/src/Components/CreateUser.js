@@ -21,7 +21,7 @@ const CreateUser = () => {
         Phone,
         Email,
       };
-      const response = await fetch("http://localhost:5000/CreateUser", {
+      const response = await fetch("https://uf5dnq4e49.execute-api.ap-south-1.amazonaws.com/dev/CreateUser/", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(body),

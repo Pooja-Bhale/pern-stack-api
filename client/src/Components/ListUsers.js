@@ -1,5 +1,6 @@
 import React, { Fragment, useEffect, useState } from "react";
 import EditUser from "./EditUser";
+import SongList from "./SongList";
 
 var ListUsers = () => {
   var [allUsers, setUsers] = useState([]);
@@ -7,9 +8,12 @@ var ListUsers = () => {
   //Delete a user
   var deleteUser = async (id) => {
     try {
-        var deleteUser = await fetch(`http://localhost:5000/DeleteUser/${id}`, {
-        method: "DELETE",
-      });
+      var deleteUser = await fetch(
+        `https://uf5dnq4e49.execute-api.ap-south-1.amazonaws.com/dev/DeleteUser/${id}`,
+        {
+          method: "DELETE",
+        }
+      );
       setUsers(allUsers.filter((user) => user.id !== id));
       console.log(deleteUser);
     } catch (err) {
@@ -20,9 +24,10 @@ var ListUsers = () => {
   // Get all Users
   var getUsers = async () => {
     try {
-        var response = await fetch("http://localhost:5000/Users");
-        var jsonData = await response.json();
-
+      var response = await fetch(
+        "https://uf5dnq4e49.execute-api.ap-south-1.amazonaws.com/dev/Users"
+      );
+      var jsonData = await response.json();
       setUsers(jsonData);
     } catch (err) {
       console.error(err.message);
@@ -33,7 +38,6 @@ var ListUsers = () => {
     getUsers();
   }, []);
 
-  console.log(allUsers);
 
   return (
     <Fragment>
@@ -45,6 +49,7 @@ var ListUsers = () => {
             <th>Last Lame</th>
             <th>Edit</th>
             <th>Delete</th>
+            <th>Media</th>
           </tr>
         </thead>
         <tbody>
@@ -62,6 +67,9 @@ var ListUsers = () => {
                 >
                   Delete
                 </button>
+              </td>
+              <td>
+              <SongList id={user.id}/>
               </td>
             </tr>
           ))}
